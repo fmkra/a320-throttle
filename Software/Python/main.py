@@ -1,6 +1,7 @@
 import sys
 import glob
 import serial
+from communication import CommunicationReader
 
 
 def getPort():
@@ -31,10 +32,16 @@ def getPort():
 def main():
     port = getPort()
     with serial.Serial(port, 115200, timeout=1) as arduino:
-        while True:
-            data = input()
-            arduino.write(data.encode())
-            print(arduino.readline().decode())
+        reader = CommunicationReader(arduino)
+        reader.registerUint10()
+        reader.registerUint10()
+
+        print(reader.read())
+        # while True:
+        #     data = input()
+        #     arduino.write(data.encode())
+        #     print(arduino.readline().decode())
+
 
 
 if __name__ == '__main__':
