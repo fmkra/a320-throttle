@@ -2,6 +2,7 @@ import sys
 import glob
 import serial
 from communication import CommunicationReader
+from vgamepad import VX360Gamepad
 
 
 def getPort():
@@ -31,17 +32,17 @@ def getPort():
 
 def main():
     port = getPort()
-    with serial.Serial(port, 115200, timeout=1) as arduino:
+    joystick = VX360Gamepad()
+    with serial.Serial(port, 9600, timeout=5) as arduino:
         reader = CommunicationReader(arduino)
         reader.registerUint10()
         reader.registerUint10()
 
-        print(reader.read())
-        # while True:
-        #     data = input()
-        #     arduino.write(data.encode())
-        #     print(arduino.readline().decode())
-
+        while True:
+            throttleLeft, throttleRight = reader.read()
+            print(throttleLeft, throttleRight)
+            joystick.left_joystick_float(throttleRight/512-1, throttleLeft/512-1)
+            joystick.update()
 
 
 if __name__ == '__main__':

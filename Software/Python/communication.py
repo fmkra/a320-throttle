@@ -27,4 +27,13 @@ class CommunicationReader:
         def readData(value):
             return value & 0x7f
         
-        
+        def readUint10(bytes):
+            return (readData(bytes[1]) << 5) | readData(bytes[0])
+
+        result = []
+        i = 0
+        for size in self.schema:
+            if size == 10:
+                result.append(readUint10(data[i:i+2]))
+                i += 2
+        return result
