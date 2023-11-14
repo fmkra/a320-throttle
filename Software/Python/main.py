@@ -1,8 +1,10 @@
 import sys
 import glob
 import serial
-from communication import CommunicationReader
 from vgamepad import VX360Gamepad
+
+from communication import CommunicationReader
+from mapper import Mapper
 
 
 def getPort():
@@ -33,6 +35,11 @@ def getPort():
 def main():
     port = getPort()
     joystick = VX360Gamepad()
+    # leftMapper = Mapper([520, 632, 896], [-1, 0, 1]) # 614, 805, 854
+    # rightMapper = Mapper([592, 708, 975], [-1, 0, 1]) # 675, 887, 938
+    leftMapper = Mapper([0, 1024], [-1, 1])
+    rightMapper = Mapper([0, 1024], [-1, 1])
+
     with serial.Serial(port, 9600, timeout=5) as arduino:
         reader = CommunicationReader(arduino)
         reader.registerUint10()
@@ -40,8 +47,8 @@ def main():
 
         while True:
             throttleLeft, throttleRight = reader.read()
-            print(throttleLeft, throttleRight)
-            joystick.left_joystick_float(throttleRight/512-1, throttleLeft/512-1)
+            # print(throttleLeft, throttleRight)
+            joystick.left_joystick_float(leftMapper.parse(throttleLeft), rightMapper.parse(throttleRight))
             joystick.update()
 
 
