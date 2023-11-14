@@ -1,19 +1,23 @@
+#include "Communication.h"
+
+const int throttleLeft = A0;
+const int throttleRight = A1;
+
+Communication communication;
+
 void setup() {
-  Serial.begin(115200);
-  pinMode(13, OUTPUT);
+  Serial.begin(9600);
+  communication.registerUint10();
+  communication.registerUint10();
+
+  communication.printSchema();
 }
 
 void loop() {
-  if(Serial.available()) {
-    String data = Serial.readString();
-    data.trim();
-    if(data == "LED_ON") {
-      digitalWrite(13, HIGH);
-    } else if(data == "LED_OFF") {
-      digitalWrite(13, LOW);
-    } else {
-      Serial.print("Unknown command ");
-      Serial.println(data);
-    }
-  }
+  Serial.println("=========");
+  int data[2] = {
+    analogRead(throttleLeft),
+    analogRead(throttleRight)
+  };
+  communication.write(data);
 }
