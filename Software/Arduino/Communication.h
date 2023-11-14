@@ -13,7 +13,6 @@ class Communication {
   void write(int data[]);
 
   void registerUint10();
-  void printSchema();
 };
 
 #endif
