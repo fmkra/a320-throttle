@@ -1,5 +1,7 @@
 # Installation
 
+Make sure you are in this directory (`Software/Python`) and have python 3.8 or higher installed.
+
 First you need to install virtual environment:
 
 ```bash

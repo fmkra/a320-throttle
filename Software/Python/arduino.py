@@ -11,7 +11,7 @@ def register_check(func):
     return wrapper
 
 
-class CommunicationReader:
+class ArduinoReader:
     def __init__(self, serial):
         self._register_finished = False
         self.schema = []

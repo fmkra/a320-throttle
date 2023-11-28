@@ -3,7 +3,7 @@ import glob
 import serial
 from vgamepad import VX360Gamepad
 
-from communication import CommunicationReader
+from arduino import ArduinoReader
 from mapper import Mapper
 
 
@@ -41,7 +41,7 @@ def main():
     rightMapper = Mapper([0, 1024], [-1, 1])
 
     with serial.Serial(port, 9600, timeout=5) as arduino:
-        reader = CommunicationReader(arduino)
+        reader = ArduinoReader(arduino)
         reader.registerUint10()
         reader.registerUint10()
 
