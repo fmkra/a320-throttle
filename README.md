@@ -6,4 +6,4 @@
 
 All `.stl` files are available for download in [Model](./Model) directory.
 
-![throttle](./throttle.png)
+<img alt="Printed throttle showcase" src="./throttle.png" width="500" />
