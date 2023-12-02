@@ -11,5 +11,5 @@ Every directory contains `_all.stl` file which combines all of the other files i
 
 Here are the three main parts of the throttle model:
  - [Lever](./Lever)
- - [Trim wheel](./Trim wheel)
+ - [Trim wheel](./Trim%20wheel)
  - [Frame](./Frame)
