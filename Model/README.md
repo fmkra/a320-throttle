@@ -1,0 +1,15 @@
+# Model
+
+This directory contains all `.stl` files for the A320 Throttle model.
+
+### Convention
+
+Files are arranged in subdirectories to make it easier to navigate and find the right file.
+Every directory contains `_all.stl` file which combines all of the other files in that directory (and subdirectories) into one file. If a given part consists of many smaller parts, they are placed in a separate directory.
+
+### Components
+
+Here are the three main parts of the throttle model:
+ - [Lever](./Lever)
+ - [Trim wheel](./Trim wheel)
+ - [Frame](./Frame)
